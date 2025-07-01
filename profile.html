@@ -121,6 +121,51 @@
             width: 100%;
         }
         
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: rgba(22, 22, 26, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: var(--transition);
+            z-index: 100;
+            padding: 2rem;
+            border-left: 1px solid var(--glass-border);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -138,7 +183,7 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
             background: linear-gradient(to right, var(--light), var(--primary));
             -webkit-background-clip: text;
@@ -148,7 +193,7 @@
         }
         
         .typewriter {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 1.5rem;
             color: var(--secondary);
             font-weight: 500;
@@ -165,7 +210,7 @@
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             margin-bottom: 2.5rem;
             line-height: 1.7;
             color: var(--text);
@@ -226,14 +271,32 @@
             background: rgba(127, 90, 240, 0.1);
         }
         
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
         .profile-img-container {
             position: absolute;
             right: 10%;
-            width: 350px;
-            height: 350px;
+            width: clamp(250px, 30vw, 350px);
+            height: clamp(250px, 30vw, 350px);
             border-radius: 50%;
             perspective: 1000px;
             z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-img-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
         
         .profile-img {
@@ -241,6 +304,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center top;
             border: 12px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 0 50px rgba(127, 90, 240, 0.3);
             transform-style: preserve-3d;
@@ -268,13 +332,13 @@
         
         /* Sections */
         section {
-            padding: 7rem 10%;
+            padding: clamp(4rem, 7vw, 7rem) clamp(5%, 10vw, 10%);
             position: relative;
         }
         
         .section-title {
-            font-size: 2.8rem;
-            margin-bottom: 4rem;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
             text-align: center;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -303,7 +367,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
             margin-bottom: 2rem;
             border: 1px solid var(--glass-border);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -320,7 +384,7 @@
         }
         
         .card h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 1rem;
             color: var(--light);
         }
@@ -336,6 +400,7 @@
         .card p {
             margin-bottom: 1rem;
             color: var(--text);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .card ul {
@@ -347,6 +412,7 @@
             line-height: 1.7;
             color: var(--text);
             position: relative;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .card li::before {
@@ -359,7 +425,7 @@
         /* Skills */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             justify-items: center;
         }
@@ -369,7 +435,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 2rem;
+            padding: clamp(1.5rem, 2vw, 2rem);
             border: 1px solid var(--glass-border);
             width: 100%;
             max-width: 350px;
@@ -384,7 +450,7 @@
         }
         
         .skill-category h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
             margin-bottom: 1.5rem;
             color: var(--light);
             position: relative;
@@ -423,12 +489,13 @@
         .skill-item span {
             color: var(--light);
             font-weight: 400;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
             gap: 2.5rem;
         }
         
@@ -437,7 +504,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 2rem;
+            padding: clamp(1.5rem, 2vw, 2rem);
             border: 1px solid var(--glass-border);
             transition: var(--transition);
             transform-style: preserve-3d;
@@ -453,7 +520,7 @@
         }
         
         .project-card h3 {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2vw, 1.4rem);
             margin-bottom: 1.2rem;
             color: var(--light);
         }
@@ -463,6 +530,7 @@
             line-height: 1.7;
             color: var(--text);
             flex-grow: 1;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .tech-stack {
@@ -485,6 +553,7 @@
             display: flex;
             gap: 1rem;
             margin-top: auto;
+            flex-wrap: wrap;
         }
         
         .project-links a {
@@ -520,7 +589,7 @@
         /* Contact */
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 3rem;
         }
         
@@ -529,20 +598,20 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
             border: 1px solid var(--glass-border);
         }
         
         .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
             color: var(--light);
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 1.8rem;
+            margin-bottom: clamp(1.2rem, 2vw, 1.8rem);
             transition: var(--transition);
         }
         
@@ -561,6 +630,7 @@
         .contact-item span {
             color: var(--light);
             font-weight: 400;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .contact-form {
@@ -568,18 +638,18 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
             border: 1px solid var(--glass-border);
         }
         
         .contact-form h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
             color: var(--light);
         }
         
         .form-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: clamp(1.2rem, 2vw, 1.8rem);
         }
         
         .form-group label {
@@ -587,6 +657,7 @@
             margin-bottom: 0.8rem;
             font-weight: 500;
             color: var(--light);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .form-group input,
@@ -597,7 +668,7 @@
             border: 1px solid var(--glass-border);
             border-radius: 10px;
             color: var(--light);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             transition: var(--transition);
             font-family: 'Inter', sans-serif;
         }
@@ -618,7 +689,7 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 3rem;
+            padding: clamp(2rem, 4vw, 3rem);
             background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -628,8 +699,9 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            flex-wrap: wrap;
         }
         
         .social-links a {
@@ -653,7 +725,7 @@
         
         footer p {
             color: var(--text);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
         
         /* Animations */
@@ -681,33 +753,15 @@
         }
         
         /* Responsive */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .profile-img-container {
-                width: 300px;
-                height: 300px;
-            }
-        }
-        
         @media (max-width: 992px) {
-            section {
-                padding: 6rem 8%;
+            .nav-links {
+                display: none;
             }
             
-            .hero {
-                padding: 0 8%;
-                padding-top: 5rem;
+            .mobile-menu-btn {
+                display: block;
             }
             
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
                 text-align: center;
@@ -732,64 +786,29 @@
             }
             
             .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-                align-items: center;
+                justify-content: center;
             }
             
             .btn-outline {
                 margin-left: 0;
             }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-                margin-bottom: 3rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (max-width: 576px) {
-            section {
-                padding: 5rem 6%;
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
             }
             
-            .hero {
-                padding: 0 6%;
-                padding-top: 6rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-            
-            .typewriter {
-                font-size: 1.2rem;
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
             
             .profile-img-container {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .card {
-                padding: 1.8rem;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
+                width: 220px;
+                height: 220px;
             }
         }
     </style>
@@ -805,6 +824,17 @@
     <nav id="navbar">
         <div class="logo">Shraddha Alhat</div>
         <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="mobile-menu" id="mobileMenu">
             <a href="#about">About</a>
             <a href="#education">Education</a>
             <a href="#skills">Skills</a>
@@ -830,9 +860,11 @@
             </div>
         </div>
         <div class="profile-img-container">
-            <div class="profile-img-shadow"></div>
-            <!-- Replace with your actual photo -->
-            <img src="Photo.jpg" alt="Shraddha Alhat" class="profile-img" id="profile-img">
+            <div class="profile-img-wrapper">
+                <div class="profile-img-shadow"></div>
+                <!-- Replace with your actual photo -->
+                <img src="Photo.jpg" alt="Shraddha Alhat" class="profile-img" id="profile-img">
+            </div>
         </div>
     </section>
     
@@ -977,7 +1009,7 @@
                 </div>
                 <p>An intelligent chatbot that assists users with product purchase decisions by retrieving and summarizing Flipkart product reviews in a conversational manner using RAG architecture.</p>
                 <div class="project-links">
-                    <a href="#">
+                    <a href="https://github.com/ShraddhaAlhat/Product_Review_Chatbot-rag-">
                         <i class="fab fa-github"></i> Code
                     </a>
                     <a href="#">
@@ -997,7 +1029,7 @@
                 </div>
                 <p>A multifunctional Telegram bot integrated with Google Gemini AI for natural language queries, image analysis, document summarization, and web search capabilities.</p>
                 <div class="project-links">
-                    <a href="#">
+                    <a href="https://github.com/ShraddhaAlhat/Telegram_Bot">
                         <i class="fab fa-github"></i> Code
                     </a>
                     <a href="#">
@@ -1136,7 +1168,25 @@
             }
         }
         
-        // Initialize typewriter after page loads
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Initialize after page loads
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 1000);
             
@@ -1267,6 +1317,9 @@
                     profileImg.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
                     document.querySelector('.profile-img-shadow').style.transform = 'translate(0, 0) scale(1)';
                 });
+                
+                // Ensure photo is properly centered
+                profileImg.style.objectPosition = 'center top';
             }
             
             // Navbar scroll effect
